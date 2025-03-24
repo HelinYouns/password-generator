@@ -15,29 +15,34 @@
         <h1>Password Generator</h1>
         <h2>Choose a template or costomize your Password</h2>
         <div class="template">
-            <div class="templates-div">Strong Password
+            <div class="templates-div strong-pass">Strong Password
                 <span>Complex & Scure</span>
             </div>
-            <div class="templates-div">Memorable
+            <div class="templates-div memorable-pass">Memorable
                 <span>Easy to remember</span>
             </div>
-            <div class="templates-div">PIN Code
+            <div class="templates-div pin-code">PIN Code
 
                 <span>Numeric Only </span>
             </div>
-            <div class="templates-div">Passphrase
+            <div class="templates-div word-combination">Passphrase
                 <span>Word Combination</span>
             </div>
-            <div class="templates-div">Customize
+            <div class="templates-div customize-pass">Customize
                 <span>Your Setting</span>
+            </div>
+            <div class="templates-div user-pass">Check Yours
+                <span>your password strength</span>
             </div>
         </div>
         <div class="password-display">
-            <p>show password here.</p>
-            <button><span class="material-symbols-outlined">
+            <p id="password">show password here.</p>
+            <button id="copybtn"><span class="material-symbols-outlined">
                     content_copy
                 </span>Copy</button>
         </div>
+        <p id="copyMessage" style="display: none; color: green;">Copied!</p>
+
         <div class="strongth-pass">
             <div class="strongth-text">
                 <p>Password Strongth</p>
@@ -54,6 +59,8 @@
                 eco
             </span>Generate Password</button>
     </div>
+   
 </body>
+<script src="action.js"></script>
 
 </html>
