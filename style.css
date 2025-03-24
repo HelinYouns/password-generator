@@ -52,8 +52,12 @@ h2 {
     flex-direction: column;
     justify-content: center;
     padding: 6%;
+    cursor: pointer;
 }
-
+.templates-div:hover{
+    border: 1px solid rgb(31, 28, 206);
+    background-color: rgb(31, 28, 206, 0.14);
+}
 .templates-div span {
     color: gray;
     font-size: small;
