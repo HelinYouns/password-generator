@@ -54,10 +54,12 @@ h2 {
     padding: 6%;
     cursor: pointer;
 }
-.templates-div:hover{
+
+.templates-div:hover {
     border: 1px solid rgb(31, 28, 206);
     background-color: rgb(31, 28, 206, 0.14);
 }
+
 .templates-div span {
     color: gray;
     font-size: small;
@@ -74,9 +76,21 @@ h2 {
     justify-content: space-between;
     padding: 0 3%;
 }
-#password{
+.password-display input{
+    border: none;
+    background: transparent;
     font-size: 18px;
+    width: 100%;
+    height: 70%;
+    cursor: default;
 }
+
+.enable-input{
+    cursor: text;
+
+}
+
+
 .password-display button {
     display: flex;
     align-items: center;
@@ -114,12 +128,19 @@ h2 {
 }
 
 .strongth-line div {
-    background-color: green;
+    background-color: rgb(188, 190, 188);
     width: 25%;
     height: 5px;
     border-radius: 5px;
 }
-
+#div1{
+    background-color: rgb(235, 61, 55);
+}
+.selected {
+    background-color: #4caf50;
+    color: white;
+  }
+  
 #generate-passw {
     width: 100%;
     margin: 5% 0;
@@ -135,3 +156,114 @@ h2 {
     font-size: 16px;
     cursor: pointer;
 }
+
+/* Customiz Password Style */
+.customize{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding-bottom: 3%;
+}
+.arrange {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Track (the bar) */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    background: rgb(8, 170, 8);
+    border-radius: 2px;
+}
+
+input[type="range"]::-moz-range-track {
+    height: 4px;
+    background: #4caf50;
+    border-radius: 2px;
+}
+
+/* Thumb (the circle/handle) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    background: #fff;
+    border: 2px solid #4caf50;
+    border-radius: 50%;
+    margin-top: -6px;
+    /* center on track */
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    background: #fff;
+    border: 2px solid #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.toggle{
+    --width:40px;
+    --height: calc(var(--width)/2);
+    --border-radious:calc(var(--height)/2);
+
+    display: inline-block;
+    cursor: pointer;
+}
+
+.toggle--input{
+    display:none;
+}
+
+.toggle--fill{
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    border-radius: var(--border-radious);
+    background: #dddddd;
+    transition: background 0.2s;
+}
+
+.toggle--input:checked ~ .toggle--fill{
+    background: #4caf50;
+}
+
+.toggle--fill::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--height);
+    width: var(--height);
+    border-radius: var(--border-radious);
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    transition:  transform 0.2s;
+}
+
+.toggle--input:checked ~ .toggle--fill::after{
+    transform: translateX(var(--height));
+}
+

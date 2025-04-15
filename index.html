@@ -35,31 +35,72 @@
                 <span>your password strength</span>
             </div>
         </div>
+       
         <div class="password-display">
-            <p id="password">show password here.</p>
+            <input type="text" readonly value="Show password here." id="password">
             <button id="copybtn"><span class="material-symbols-outlined">
                     content_copy
                 </span>Copy</button>
         </div>
-        <p id="copyMessage" style="display: none; color: green;">Copied!</p>
 
-        <div class="strongth-pass">
-            <div class="strongth-text">
-                <p>Password Strongth</p>
-                <p>Very Strong</p>
+        <div class="customize">
+            <div class="arrange password-length">
+                <div>Password Length</div>
+
+                    <div class="field">
+                        <input type="range" min="8" max="32" value="16" step="1">
+                        <div class="slidervalue">16</div>
+                    
+                </div>
+
             </div>
-            <div class="strongth-line">
-                <div id="div1"></div>
-                <div id="div2"></div>
-                <div id="div3"></div>
-                <div id="div4"></div>
+            <div class="arrange uppercase">
+                <div>Include Uppercase</div>
+                <div class="switch-uppercase">
+                    <label class="toggle" for="uppercaseToggle">
+                        <input class="toggle--input" type="checkbox" id="uppercaseToggle">
+                    <div class="toggle--fill"></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="arrange number">
+                <div>Include Number</div>
+                <div class="switch-number">
+                    <label class="toggle" for="numberToggle">
+                        <input class="toggle--input" type="checkbox" id="numberToggle">
+                    <div class="toggle--fill"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="arrange symbols">
+                <div>Include Symbols</div>
+                <div class="switch-symbols">
+                    <label class="toggle" for="symbolToggle">
+                        <input class="toggle--input" type="checkbox" id="symbolToggle">
+                    <div class="toggle--fill"></div>
+                    </label>
+                </div>
             </div>
         </div>
-        <button id="generate-passw"><span class="material-symbols-outlined">
-                eco
-            </span>Generate Password</button>
-    </div>
-   
+            <div class="strongth-pass">
+                <div class="strongth-text">
+                    <p>Password Strongth</p>
+                    <p>Very Strong</p>
+                </div>
+                <div class="strongth-line">
+                    <div id="div1"></div>
+                    <div id="div2"></div>
+                    <div id="div3"></div>
+                    <div id="div4"></div>
+                </div>
+            </div>
+            <button id="generate-passw"><span class="material-symbols-outlined">
+                    eco
+                </span>Generate Password</button>
+            <p id="copyMessage" style="display: none; color: green;">Copied!</p>
+       
+
 </body>
 <script src="action.js"></script>
 
