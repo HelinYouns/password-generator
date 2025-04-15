@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Ponomar&display=swap');
 
+/* RESET & GLOBAL STYLES */
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: "Ponomar", serif;
+    font-family: 'Ponomar', serif;
 }
 
 body {
@@ -14,37 +15,38 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(243, 243, 243);
+    background-color: #eeeeee7c;
 }
 
 .container {
-    box-shadow: 1px 2px 3px rgb(122, 122, 122);
+    background-color: white;
+    box-shadow: 1px 2px 3px rgba(122, 122, 122, 0.466);
     padding: 3%;
     border-radius: 10%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-color: white;
+    justify-content: center;
 }
 
 h2 {
-    color: rgb(105, 105, 105);
+    color: #535353;
     font-size: 18px;
     padding-bottom: 5%;
     font-weight: 300;
 }
 
+/* TEMPLATE STYLES */
 .template {
     padding: 2% 0;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     gap: 5%;
     width: 100%;
 }
 
 .templates-div {
-    background-color: rgb(235, 235, 235);
+    background-color: #ebebeba4;
     border-radius: 10px;
     width: 90%;
     height: 60px;
@@ -55,19 +57,17 @@ h2 {
     cursor: pointer;
 }
 
-.templates-div:hover {
-    border: 1px solid rgb(31, 28, 206);
-    background-color: rgb(31, 28, 206, 0.14);
-}
+
 
 .templates-div span {
-    color: gray;
+    color: rgb(99, 99, 99);
     font-size: small;
 }
 
+/* PASSWORD DISPLAY */
 .password-display {
     margin: 5% 0;
-    background-color: rgb(235, 235, 235);
+    background-color: #ebebeba4;
     width: 100%;
     height: 50px;
     border-radius: 10px;
@@ -76,20 +76,21 @@ h2 {
     justify-content: space-between;
     padding: 0 3%;
 }
-.password-display input{
+
+.password-display input {
     border: none;
     background: transparent;
     font-size: 18px;
     width: 100%;
     height: 70%;
     cursor: default;
+    overflow: auto;
+    white-space: nowrap;
 }
 
-.enable-input{
+.enable-input {
     cursor: text;
-
 }
-
 
 .password-display button {
     display: flex;
@@ -102,13 +103,14 @@ h2 {
     font-size: 16px;
     padding: 4%;
     border: none;
-    background-color: #0000FF;
+    background-color: #0000ff;
     color: white;
     cursor: pointer;
 }
 
-.strongth-pass {
-    background-color: rgb(235, 235, 235);
+/* PASSWORD STRENGTH */
+.strength-pass {
+    background-color: #ebebeba4;
     width: 100%;
     border-radius: 10px;
     display: flex;
@@ -117,30 +119,38 @@ h2 {
     gap: 5px;
 }
 
-.strongth-text {
+.strength-text {
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
-.strongth-line {
+.strength-line {
     display: flex;
     gap: 1%;
 }
 
-.strongth-line div {
-    background-color: rgb(188, 190, 188);
+.strength-line div {
+    background-color: #ccc;
     width: 25%;
     height: 5px;
     border-radius: 5px;
 }
-#div1{
-    background-color: rgb(235, 61, 55);
+
+#div1 {
+    background-color: #eb3d37;
 }
+
+/* SELECTED TEMPLATE HIGHLIGHT */
 .selected {
-    background-color: #4caf50;
-    color: white;
-  }
-  
+    border: 1px solid #1f1cce8e;
+    background-color: rgba(31, 28, 206, 0.11);
+    
+}
+.templates-div:hover {
+    border: 1px solid #1f1cce8e;
+    background-color: rgba(31, 28, 206, 0.07);
+}
+/* GENERATE BUTTON */
 #generate-passw {
     width: 100%;
     margin: 5% 0;
@@ -149,7 +159,7 @@ h2 {
     align-items: center;
     gap: 1%;
     padding: 1%;
-    border-radius: 5px;
+    border-radius: 4px;
     border: none;
     background-color: green;
     color: white;
@@ -157,14 +167,15 @@ h2 {
     cursor: pointer;
 }
 
-/* Customiz Password Style */
-.customize{
+/* CUSTOMIZE PASSWORD SECTION */
+.customize {
     display: none;
     flex-direction: column;
     width: 100%;
     gap: 1rem;
     padding-bottom: 3%;
 }
+
 .arrange {
     width: 100%;
     display: flex;
@@ -179,6 +190,7 @@ h2 {
     gap: 0.6rem;
 }
 
+/* RANGE SLIDER */
 input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
@@ -189,10 +201,9 @@ input[type="range"] {
     cursor: pointer;
 }
 
-/* Track (the bar) */
 input[type="range"]::-webkit-slider-runnable-track {
     height: 4px;
-    background: rgb(8, 170, 8);
+    background: #08aa08;
     border-radius: 2px;
 }
 
@@ -202,7 +213,6 @@ input[type="range"]::-moz-range-track {
     border-radius: 2px;
 }
 
-/* Thumb (the circle/handle) */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 15px;
@@ -211,7 +221,6 @@ input[type="range"]::-webkit-slider-thumb {
     border: 2px solid #4caf50;
     border-radius: 50%;
     margin-top: -6px;
-    /* center on track */
     cursor: pointer;
 }
 
@@ -224,46 +233,46 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
 }
 
-.toggle{
-    --width:40px;
-    --height: calc(var(--width)/2);
-    --border-radious:calc(var(--height)/2);
+/* TOGGLE SWITCH */
+.toggle {
+    --width: 40px;
+    --height: calc(var(--width) / 2);
+    --border-radius: calc(var(--height) / 2);
 
     display: inline-block;
     cursor: pointer;
 }
 
-.toggle--input{
-    display:none;
+.toggle--input {
+    display: none;
 }
 
-.toggle--fill{
+.toggle--fill {
     position: relative;
     width: var(--width);
     height: var(--height);
-    border-radius: var(--border-radious);
+    border-radius: var(--border-radius);
     background: #dddddd;
     transition: background 0.2s;
 }
 
-.toggle--input:checked ~ .toggle--fill{
+.toggle--input:checked~.toggle--fill {
     background: #4caf50;
 }
 
-.toggle--fill::after{
+.toggle--fill::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     height: var(--height);
     width: var(--height);
-    border-radius: var(--border-radious);
+    border-radius: var(--border-radius);
     background: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    transition:  transform 0.2s;
+    transition: transform 0.2s;
 }
 
-.toggle--input:checked ~ .toggle--fill::after{
+.toggle--input:checked~.toggle--fill::after {
     transform: translateX(var(--height));
 }
-

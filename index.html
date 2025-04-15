@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="assets/search-password.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
     <link rel="stylesheet"
@@ -13,95 +14,91 @@
 <body>
     <div class="container">
         <h1>Password Generator</h1>
-        <h2>Choose a template or costomize your Password</h2>
+        <h2>Choose a template or customize your password</h2>
+
         <div class="template">
             <div class="templates-div strong-pass">Strong Password
-                <span>Complex & Scure</span>
+                <span>Complex & Secure</span>
             </div>
             <div class="templates-div memorable-pass">Memorable
                 <span>Easy to remember</span>
             </div>
             <div class="templates-div pin-code">PIN Code
-
-                <span>Numeric Only </span>
+                <span>Numeric only</span>
             </div>
             <div class="templates-div word-combination">Passphrase
-                <span>Word Combination</span>
+                <span>Word combination</span>
             </div>
             <div class="templates-div customize-pass">Customize
-                <span>Your Setting</span>
+                <span>Your settings</span>
             </div>
             <div class="templates-div user-pass">Check Yours
-                <span>your password strength</span>
+                <span>Your password strength</span>
             </div>
         </div>
-       
+
         <div class="password-display">
             <input type="text" readonly value="Show password here." id="password">
-            <button id="copybtn"><span class="material-symbols-outlined">
-                    content_copy
-                </span>Copy</button>
+            <button id="copybtn">
+                <span class="material-symbols-outlined">content_copy</span>Copy
+            </button>
         </div>
 
         <div class="customize">
             <div class="arrange password-length">
-                <div>Password Length</div>
-
-                    <div class="field">
-                        <input type="range" min="8" max="32" value="16" step="1">
-                        <div class="slidervalue">16</div>
-                    
+                <label for="rangeSlider">Password Length</label>
+                <div class="field">
+                    <input type="range" id="rangeSlider" min="8" max="32" value="16" step="1">
+                    <div class="slidervalue">16</div>
                 </div>
-
             </div>
+
             <div class="arrange uppercase">
-                <div>Include Uppercase</div>
-                <div class="switch-uppercase">
-                    <label class="toggle" for="uppercaseToggle">
-                        <input class="toggle--input" type="checkbox" id="uppercaseToggle">
+                <span>Include Uppercase</span>
+                <label class="toggle">
+                    <input class="toggle--input" type="checkbox" id="uppercaseToggle">
                     <div class="toggle--fill"></div>
-                    </label>
-                </div>
+                </label>
             </div>
 
             <div class="arrange number">
-                <div>Include Number</div>
-                <div class="switch-number">
-                    <label class="toggle" for="numberToggle">
-                        <input class="toggle--input" type="checkbox" id="numberToggle">
+                <span>Include Number</span>
+                <label class="toggle">
+                    <input class="toggle--input" type="checkbox" id="numberToggle">
                     <div class="toggle--fill"></div>
-                    </label>
-                </div>
+                </label>
             </div>
+
             <div class="arrange symbols">
-                <div>Include Symbols</div>
-                <div class="switch-symbols">
-                    <label class="toggle" for="symbolToggle">
-                        <input class="toggle--input" type="checkbox" id="symbolToggle">
+                <span>Include Symbols</span>
+                <label class="toggle">
+                    <input class="toggle--input" type="checkbox" id="symbolToggle">
                     <div class="toggle--fill"></div>
-                    </label>
-                </div>
+                </label>
             </div>
         </div>
-            <div class="strongth-pass">
-                <div class="strongth-text">
-                    <p>Password Strongth</p>
-                    <p>Very Strong</p>
-                </div>
-                <div class="strongth-line">
-                    <div id="div1"></div>
-                    <div id="div2"></div>
-                    <div id="div3"></div>
-                    <div id="div4"></div>
-                </div>
-            </div>
-            <button id="generate-passw"><span class="material-symbols-outlined">
-                    eco
-                </span>Generate Password</button>
-            <p id="copyMessage" style="display: none; color: green;">Copied!</p>
-       
 
+        <div class="strength-pass">
+            <div class="strength-text">
+                <p>Password Strength</p>
+                <p id="strengthLabel">Very Strong</p>
+            </div>
+            <div class="strength-line">
+                <div id="div1"></div>
+                <div id="div2"></div>
+                <div id="div3"></div>
+                <div id="div4"></div>
+            </div>
+        </div>
+
+        <button id="generate-passw">
+            <span class="material-symbols-outlined">eco</span>Generate Password
+        </button>
+
+        <p id="copyMessage" style="display: none; color: green;">Copied!</p>
+    </div>
+
+    <script src="action.js" defer></script>
 </body>
-<script src="action.js"></script>
 
 </html>

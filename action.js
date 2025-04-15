@@ -15,15 +15,18 @@ const userPassword = document.querySelector(".user-pass");
 let controlBtn = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Change Buttons mode
-  controlButtons();
+
   // Initialize slider value
   sliderValue.textContent = rangeSlider.value;
 
   // Trigger password generation on slider move
+  let debounceTimeout;
   rangeSlider.addEventListener("input", () => {
     sliderValue.textContent = rangeSlider.value;
-    passwordFild.value = customizePassword(rangeSlider.value);
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      passwordFild.value = customizePassword(rangeSlider.value);
+    }, 200);
   });
 
   [uppercaseToggle, numberToggle, symbolToggle].forEach((checkbox) => {
@@ -52,38 +55,42 @@ copyBtn.addEventListener("click", () => {
 //Generate Strong PassWord Event Listiner
 strongPass.addEventListener("click", function () {
   controlBtn = 1;
+  controlButtons();
   highlightSelected(this);
 });
 
 //Generate Memorable Passwrod Event Listiner
 memorablePass.addEventListener("click", function () {
   controlBtn = 2;
+  controlButtons();
   highlightSelected(this);
 });
 
 //Generate PIN Code Event Listiner
 pinCode.addEventListener("click", function () {
   controlBtn = 3;
+  controlButtons();
   highlightSelected(this);
 });
 
 //Generate Passphrase Event Listiner
 wordCombination.addEventListener("click", function () {
   controlBtn = 4;
+  controlButtons();
   highlightSelected(this);
 });
 //Customiz password Event Listiner
 customizPass.addEventListener("click", function () {
   controlBtn = 5;
+  controlButtons();
   highlightSelected(this);
 });
 // Check Users Password Strongth
 userPassword.addEventListener("click", function () {
   controlBtn = 6;
+  controlButtons();
   highlightSelected(this);
 });
-
-
 
 // Generate password button
 generatPasswBtn.addEventListener("click", async function () {
@@ -104,6 +111,7 @@ async function controlButtons() {
       break;
     case 3:
       passwordFild.value = generatePinCode(6);
+      checkUserPassword(passwordFild.value);
       toggleDisplay(false);
       disableTextField(false);
       break;
@@ -134,10 +142,9 @@ function toggleDisplay(toggleData) {
 }
 // Able & Disable Text Field
 function disableTextField(disable) {
-  if (disable) {
+  if (!disable) {
     passwordFild.readOnly = true;
-    passwordFild.disabled = true;
-    passwordFild.style.cursor = "not-allowed";
+    passwordFild.style.cursor = "default";
   } else {
     passwordFild.readOnly = false;
     passwordFild.disabled = false;
@@ -147,6 +154,8 @@ function disableTextField(disable) {
 
 // Check Users Password Strongth
 function checkUserPassword(UPassword) {
+  UPassword = String(UPassword);
+  const strengthLabel=document.getElementById("strengthLabel");
   const regexUppercase = /[A-Z]/;
   const regexNumber = /\d/;
   const regexSymbol = /[!@#$%^&*()]/;
@@ -156,7 +165,7 @@ function checkUserPassword(UPassword) {
   if (regexUppercase.test(UPassword)) rate += 25;
   if (regexNumber.test(UPassword)) rate += 25;
   if (regexSymbol.test(UPassword)) rate += 25;
-  if (String(UPassword).length >= 12) rate += 25;
+  if (UPassword.length >= 12) rate += 25;
 
   const bars = [
     document.getElementById("div1"),
@@ -164,29 +173,40 @@ function checkUserPassword(UPassword) {
     document.getElementById("div3"),
     document.getElementById("div4"),
   ];
-
-  // Reset all colors first
   bars.forEach((bar) => (bar.style.backgroundColor = "#ccc")); // or any base color
 
-  // Apply colors based on strength
-  if (rate >= 25) bars[0].style.backgroundColor = "rgb(235, 61, 55)"; // Weak
-  if (rate >= 50) bars[1].style.backgroundColor = "rgb(235, 157, 55)"; // Medium
-  if (rate >= 75) bars[2].style.backgroundColor = "rgb(223, 235, 55)"; // Good
-  if (rate === 100) bars[3].style.backgroundColor = "rgb(61, 243, 25)"; // Strong
+  
+  if (rate <= 25) {bars[0].style.backgroundColor = "rgb(235, 61, 55)"; strengthLabel.textContent="Weak";}// Weak
+  if (rate === 50) {
+    bars.slice(0, 2).forEach((bar) => {
+      bar.style.backgroundColor = "rgb(235, 157, 55)";
+    });
+    strengthLabel.textContent="Medium";
+  } // Medium
+  if (rate === 75) {
+    bars.slice(0, 3).forEach((bar) => {
+      bar.style.backgroundColor = "rgb(223, 235, 55)";
+    });
+    strengthLabel.textContent="Good";
+  }
+  if (rate === 100){
+    bars.forEach((item) => (item.style.backgroundColor = "rgb(61, 243, 25)"));
+    strengthLabel.textContent="Very Strong";
+  } // Strong
 }
 
 // Customize password Function
 function customizePassword(length) {
-  const uppercaseSwitch = document.querySelector("#uppercaseToggle").checked;
-  const numberSwitch = document.querySelector("#numberToggle").checked;
-  const symbolSwitch = document.querySelector("#symbolToggle").checked;
+  const uppercaseSwitch = uppercaseToggle.checked;
+  const numberSwitch = numberToggle.checked;
+  const symbolSwitch = symbolToggle.checked;
 
   let password = "";
   let notAllowedCharacter = [
-    32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-    50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68,
-    69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87,
-    88, 89, 90, 91, 92, 93, 94, 95, 96, 123, 125,
+    32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+    51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
+    70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88,
+    89, 90, 91, 92, 93, 94, 95, 96, 123, 125,
   ];
 
   let controlLoop = true;
@@ -239,7 +259,7 @@ function customizePassword(length) {
       password = "";
     }
   }
-
+  checkUserPassword(password);
   return password;
 }
 
@@ -248,8 +268,10 @@ async function generatePassphrase() {
   const word1 = await returnRandomWord();
   const word2 = await returnRandomWord();
   const word3 = await returnRandomWord();
+
   const num = Math.floor(Math.random() * 1000);
   let phrase = word1 + "-" + word2 + "-" + word3 + "-" + num;
+  checkUserPassword(phrase);
   return phrase;
 }
 //Generate Strong PassWord
@@ -277,7 +299,7 @@ function generateStrongPassword(length) {
       password = "";
     }
   }
-
+  checkUserPassword(password);
   return password;
 }
 
@@ -294,7 +316,7 @@ async function generateMemorablePassword() {
       controlLoop = false;
     }
   }
-
+  checkUserPassword(password);
   return password;
 }
 
@@ -317,7 +339,6 @@ function generatePinCode(pinLength) {
   for (let i = 0; i < pinLength; i++) {
     pinCode += Math.floor(Math.random() * 10);
   }
-
   return pinCode;
 }
 
@@ -331,6 +352,6 @@ function highlightSelected(button) {
     userPassword,
   ];
 
-  allButtons.forEach(btn => btn.classList.remove("selected"));
+  allButtons.forEach((btn) => btn.classList.remove("selected"));
   button.classList.add("selected");
 }
