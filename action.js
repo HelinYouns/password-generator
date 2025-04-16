@@ -15,7 +15,6 @@ const userPassword = document.querySelector(".user-pass");
 let controlBtn = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
-
   // Initialize slider value
   sliderValue.textContent = rangeSlider.value;
 
@@ -88,7 +87,7 @@ customizPass.addEventListener("click", function () {
 // Check Users Password Strongth
 userPassword.addEventListener("click", function () {
   controlBtn = 6;
-  controlButtons();
+  disableTextField(true);
   highlightSelected(this);
 });
 
@@ -127,8 +126,7 @@ async function controlButtons() {
       break;
     case 6:
       toggleDisplay(false);
-      disableTextField(true);
-      passwordFild.value = checkUserPassword(passwordFild.value);
+      checkUserPassword(passwordFild.value);
       break;
   }
 }
@@ -146,6 +144,8 @@ function disableTextField(disable) {
     passwordFild.readOnly = true;
     passwordFild.style.cursor = "default";
   } else {
+    passwordFild.focus();
+    passwordFild.value = "";
     passwordFild.readOnly = false;
     passwordFild.disabled = false;
     passwordFild.style.cursor = "text";
@@ -155,7 +155,7 @@ function disableTextField(disable) {
 // Check Users Password Strongth
 function checkUserPassword(UPassword) {
   UPassword = String(UPassword);
-  const strengthLabel=document.getElementById("strengthLabel");
+  const strengthLabel = document.getElementById("strengthLabel");
   const regexUppercase = /[A-Z]/;
   const regexNumber = /\d/;
   const regexSymbol = /[!@#$%^&*()]/;
@@ -175,23 +175,25 @@ function checkUserPassword(UPassword) {
   ];
   bars.forEach((bar) => (bar.style.backgroundColor = "#ccc")); // or any base color
 
-  
-  if (rate <= 25) {bars[0].style.backgroundColor = "rgb(235, 61, 55)"; strengthLabel.textContent="Weak";}// Weak
+  if (rate <= 25) {
+    bars[0].style.backgroundColor = "rgb(235, 61, 55)";
+    strengthLabel.textContent = "Weak";
+  } // Weak
   if (rate === 50) {
     bars.slice(0, 2).forEach((bar) => {
       bar.style.backgroundColor = "rgb(235, 157, 55)";
     });
-    strengthLabel.textContent="Medium";
+    strengthLabel.textContent = "Medium";
   } // Medium
   if (rate === 75) {
     bars.slice(0, 3).forEach((bar) => {
       bar.style.backgroundColor = "rgb(223, 235, 55)";
     });
-    strengthLabel.textContent="Good";
+    strengthLabel.textContent = "Good";
   }
-  if (rate === 100){
+  if (rate === 100) {
     bars.forEach((item) => (item.style.backgroundColor = "rgb(61, 243, 25)"));
-    strengthLabel.textContent="Very Strong";
+    strengthLabel.textContent = "Very Strong";
   } // Strong
 }
 
